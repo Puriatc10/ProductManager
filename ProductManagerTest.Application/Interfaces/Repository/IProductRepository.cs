@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductManagerTest.Application.Interfaces
+namespace ProductManagerTest.Application.Interfaces.Repository
 {
     public interface IProductRepository
     {
