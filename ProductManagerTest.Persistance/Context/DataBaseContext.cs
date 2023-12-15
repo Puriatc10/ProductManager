@@ -13,9 +13,10 @@ namespace ProductManagerTest.Persistance.Context
 {
     public class DataBaseContext : IdentityDbContext<User , Role , Guid>
     {
+        public DataBaseContext() { }
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
 
-        public DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

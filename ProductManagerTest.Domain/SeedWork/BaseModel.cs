@@ -12,8 +12,8 @@ namespace ProductManagerTest.Domain.SeedWork
         {
             CreateDate = DateTime.Now;
         }
-        public TKey Id { get; protected set; }
-        public DateTime CreateDate { get; protected set; }
+        public TKey Id { get; set; }
+        public DateTime CreateDate { get; set; }
         public DateTime ModificatonDate { get; set; }
     }
 }

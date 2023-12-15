@@ -13,7 +13,7 @@ namespace ProductManagerTest.Persistance.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly DataBaseContext _context;
-        public UserRepository(DataBaseContext dataBaseContext) 
+        public UserRepository(DataBaseContext dataBaseContext)
         {
             _context = dataBaseContext;
         }

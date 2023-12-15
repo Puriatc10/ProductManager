@@ -26,8 +26,13 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
-    <Folder Include="Fixtures\" />
     <Folder Include="Systems\Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProductManagerTest.Domain\ProductManagerTest.Domain.csproj" />
+	<ProjectReference Include="..\ProductManagerTest.Application\ProductManagerTest.Application.csproj" />
+	<ProjectReference Include="..\ProductManagerTest.Persistance\ProductManagerTest.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

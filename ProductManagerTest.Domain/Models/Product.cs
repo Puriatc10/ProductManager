@@ -20,6 +20,11 @@ namespace ProductManagerTest.Domain.Models
             Id = Guid.NewGuid();
             IsAvailable = true;
         }
+        public Product(Guid id)
+        {
+            Id = id;
+            IsAvailable = true;
+        }
         public string Name { get; set; }
         public string ManufactureEmail { get; set; }
         public string ManufacturePhone { get; set; }

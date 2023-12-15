@@ -7,6 +7,8 @@ using System.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ProductManagerTest.Application.Interfaces.Repository;
+using ProductManagerTest.Persistance.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,12 @@ builder.Services.AddIdentity<User, Role>(options =>
 })
 .AddEntityFrameworkStores<DataBaseContext>()
 .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<DataBaseContext, DataBaseContext>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddTransient<SignInManager<User>, SignInManager<User>>();
+builder.Services.AddTransient<UserManager<User>, UserManager<User>>();
 
 // add jwt authentication
 builder.Services.AddAuthentication(option =>

@@ -1,4 +1,5 @@
-﻿using ProductManagerTest.Application.Interfaces.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductManagerTest.Application.Interfaces.Repository;
 using ProductManagerTest.Domain.Models;
 using ProductManagerTest.Persistance.Context;
 using System;
@@ -16,34 +17,60 @@ namespace ProductManagerTest.Persistance.Repositories
         {
             _context = dataBaseContext;
         }
-        public Task<Guid> Add()
+        public async Task<Guid> Add(Product product)
         {
-            throw new NotImplementedException();
+            await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
+            return product.Id;
         }
 
-        public Task<Product> DeleteById(Guid productId)
+        public async Task<bool> DeleteById(Guid productId)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
-        public Task<Product> Edit(Guid productId)
+        public async Task<Product> Edit(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+            return new Product(product.Id);
         }
 
-        public Task<List<Product>> GetAllAvailables(Guid? userId = null)
+        public async Task<List<Product>> GetAllAvailables(Guid? userId = null)
         {
-            throw new NotImplementedException();
+            var products = _context.Products.Where(x => x.IsAvailable == true && (userId != null ? x.UserId == userId : true)).ToList();
+            return products;
         }
 
-        public Task<List<Product>> GetAllByUserId(Guid userId)
+        public async Task<List<Product>> GetAllByUserId(Guid userId)
         {
-            throw new NotImplementedException();
+            var products = _context.Products.Where(x => x.UserId == userId).ToList();
+            return products;
         }
 
-        public Task<Product> GetById(Guid productId)
+        public async Task<Product> GetById(Guid productId)
         {
-            throw new NotImplementedException();
+            var product = _context.Products.FirstOrDefault(x => x.Id == productId);
+            return product;
+        }
+
+        public async Task<bool> MakeAvailable(Product product)
+        {
+            product.IsAvailable = true;
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+            return product.IsAvailable;
+        }
+
+        public async Task<bool> MakeUnAvailable(Product product)
+        {
+            product.IsAvailable = false;
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+            return product.IsAvailable;
         }
     }
 }
