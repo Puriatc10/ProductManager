@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using ProductManagerTest.Application.Commands;
 using ProductManagerTest.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test1@gmail.com",
                 ManufacturePhone = "09000000001",
                 ProduceDate = DateTime.Now.AddDays(111),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = ConstantUserId,
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = ConstantUserId.ToString(),
             },
             new Product(ConstantProductId)
             {
@@ -29,8 +30,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = ConstantUserId,
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = ConstantUserId.ToString(),
             },
             new Product()
             {
@@ -38,8 +39,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test3@gmail.com",
                 ManufacturePhone = "09000000003",
                 ProduceDate = DateTime.Now.AddDays(333),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = ConstantUserId,
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = ConstantUserId.ToString(),
             },
             new Product()
             {
@@ -47,8 +48,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -56,8 +57,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -65,8 +66,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -74,8 +75,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -83,8 +84,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -92,8 +93,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -101,8 +102,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -110,8 +111,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -119,8 +120,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -128,8 +129,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -137,8 +138,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -146,8 +147,8 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             },
             new Product()
             {
@@ -155,9 +156,34 @@ namespace ProductManagerTest.UnitTest.FakeData
                 ManufactureEmail = "Test2@gmail.com",
                 ManufacturePhone = "09000000002",
                 ProduceDate = DateTime.Now.AddDays(222),
-                ProductOwner = new User() { Id = Guid.NewGuid() },
-                UserId = Guid.NewGuid(),
+                ProductOwner = new User() { Id = Guid.NewGuid().ToString() },
+                UserId = Guid.NewGuid().ToString(),
             }
+        };
+
+        public static List<AddProductCommand> AddProductCommands => new List<AddProductCommand>()
+        {
+            new AddProductCommand()
+            {
+                ManufactureEmail = "Test@gmail.com",
+                ManufacturePhone = "09000000000",
+                Name = "testProduct",
+                ProduceDate = new DateTime(1 , 1 , 1 )
+            },
+            new AddProductCommand()
+            {
+                ManufactureEmail = "Test1@gmail.com",
+                ManufacturePhone = "09000000001",
+                Name = "test1Product",
+                ProduceDate = new DateTime(1 , 1 , 2 )
+            },
+            new AddProductCommand()
+            {
+                ManufactureEmail = "Test3@gmail.com",
+                ManufacturePhone = "09000000003",
+                Name = "test3Product",
+                ProduceDate = new DateTime(1 , 1 , 3 )
+            },
         };
 
         public static IQueryable<Product> GetFakeQueryable(int count)

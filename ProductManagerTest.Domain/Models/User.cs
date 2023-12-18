@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProductManagerTest.Domain.Models
 {
-    public class User : IdentityUser<Guid>
+    public class User : IdentityUser<string>
     {
         public User(string firstName, string lastName, string phoneNumber, string email, string userName, string passwordHash)
         {
+            Id = Guid.NewGuid().ToString();
             FirstName = firstName;
             LastName = lastName;
             PhoneNumber = phoneNumber;
@@ -21,6 +22,12 @@ namespace ProductManagerTest.Domain.Models
         }
         public User()
         {
+            Id = Guid.NewGuid().ToString();
+            CreateDate = DateTime.Now;
+        }
+        public User(Guid id)
+        {
+            Id = id.ToString();
             CreateDate = DateTime.Now;
         }
 

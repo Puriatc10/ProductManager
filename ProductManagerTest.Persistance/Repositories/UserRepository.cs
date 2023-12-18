@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using ProductManagerTest.Application.Interfaces.Repository;
 using ProductManagerTest.Domain.Models;
 using ProductManagerTest.Persistance.Context;
@@ -13,39 +15,78 @@ namespace ProductManagerTest.Persistance.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly DataBaseContext _context;
-        public UserRepository(DataBaseContext dataBaseContext)
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+
+        public UserRepository(DataBaseContext dataBaseContext, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = dataBaseContext;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public Task<IdentityResult> CreateAsync(User user, string password)
+        public Task<bool> CheckPassword(User user, string password, string passwordHash)
         {
-            throw new NotImplementedException();
+            var result = _userManager.PasswordHasher.VerifyHashedPassword(user, passwordHash, password);
+            return Task.FromResult( result == PasswordVerificationResult.Success ? true : false);
         }
 
-        public Task<string?> CreateOrUpdateToken(User user)
+        public async Task<IdentityResult> CreateAsync(User user, string password)
         {
-            throw new NotImplementedException();
+            var result = await _userManager.CreateAsync(user, password);
+            return result;
         }
 
-        public Task<User> GetById(Guid id)
+        public async Task CreateToken(IdentityUserToken<string> token)
         {
-            throw new NotImplementedException();
+            await _context.UserTokens.AddAsync(token);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<User> GetByName(string name)
+        public async Task<User> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.FirstOrDefault(x => x.Id == id.ToString());
+            return user;
         }
 
-        public void SignIn(User? user, bool IsPersistent)
+        public async Task<User> GetByName(string name)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.FirstOrDefault(x => x.UserName.ToUpper() == name.ToUpper());
+            return user;
         }
 
-        public Task<bool> UserExists(Guid id)
+        public async Task<string?> GetTokenValue(Guid id)
         {
-            throw new NotImplementedException();
+            var token = await _context.UserTokens.Where(x => x.UserId == id.ToString()).Select(x => x.Value).SingleOrDefaultAsync();
+            return token;
+        }
+
+        public async Task<IdentityUserToken<string>?> GetUserToken(Guid id)
+        {
+            var token = await _context.UserTokens.SingleOrDefaultAsync(x => x.UserId == id.ToString());
+            return token;
+        }
+
+        public async Task<string> HashPassword(User user, string password)
+        {
+            var result = _userManager.PasswordHasher.HashPassword(user, password);
+            return result;
+        }
+
+        public async Task SignIn(User? user, bool IsPersistent)
+        {
+            await _signInManager.SignInAsync(user, IsPersistent);
+        }
+
+        public async Task UpdateToken(IdentityUserToken<string> token)
+        {
+            _context.UserTokens.Update(token);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> UserExists(Guid id)
+        {
+            return await _context.Users.AnyAsync(u => u.Id == id.ToString());
         }
     }
 }

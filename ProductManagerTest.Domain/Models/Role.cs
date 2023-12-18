@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductManagerTest.Domain.Models
 {
-    public class Role : IdentityRole<Guid>
+    public class Role : IdentityRole<string>
     {
         // nothing yet..
     }

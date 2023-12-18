@@ -14,6 +14,8 @@ namespace ProductManagerTest.Application.Interfaces.Repository
         public Task<Product> GetById(Guid productId);
         public Task<List<Product>> GetAllAvailables(Guid? userId = null);
         public Task<List<Product>> GetAllByUserId(Guid userId);
+        public Task<List<Product>?> GetAllExcept(Guid productId);
+        //public Task<DateTime?> GetProduceDateExcept(Guid productId, DateTime produceDate);
         public Task<Guid> Add(Product product);
         public Task<Product> Edit(Product product);
         public Task<bool> DeleteById(Guid productId);

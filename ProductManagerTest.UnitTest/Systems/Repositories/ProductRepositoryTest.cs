@@ -57,7 +57,7 @@ namespace ProductManagerTest.UnitTest.Systems.Repositories
 
             Assert.NotNull(result);
             result.Should().BeOfType<Product>();
-            result.Id.Should().Be(ProductFake.ConstantProductId);
+            result.Id.Should().Be(ProductFake.ConstantProductId.ToString());
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace ProductManagerTest.UnitTest.Systems.Repositories
 
             Assert.NotNull(result);
             result.Should().BeOfType<Product>();
-            result.Id.Should().Be(ProductFake.ConstantProductId);
+            result.Id.Should().Be(ProductFake.ConstantProductId.ToString());
         }
         [Fact]
         public async Task DeleteById_Should_Return_True()

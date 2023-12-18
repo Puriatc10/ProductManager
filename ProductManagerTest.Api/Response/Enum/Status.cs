@@ -2,7 +2,7 @@
 {
     public enum Status
     {
-        Success = 0,
-        Failed = 1,
+        Success = 1,
+        Failed = 0,
     }
 }

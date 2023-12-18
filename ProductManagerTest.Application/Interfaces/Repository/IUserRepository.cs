@@ -15,8 +15,13 @@ namespace ProductManagerTest.Application.Interfaces.Repository
         public Task<User> GetById(Guid id);
         public Task<bool> UserExists(Guid id);
         public Task<User> GetByName(string name);
-        public void SignIn(User? user , bool IsPersistent);
+        public Task SignIn(User? user , bool IsPersistent);
         public Task<IdentityResult> CreateAsync(User user, string password);
-        public Task<string?> CreateOrUpdateToken(User user);
+        public Task<bool> CheckPassword(User user, string password, string passwordHash);
+        public Task<string> HashPassword(User user, string password);
+        public Task<IdentityUserToken<string>?> GetUserToken(Guid id);
+        public Task<string?> GetTokenValue(Guid id);
+        public Task CreateToken(IdentityUserToken<string> token);
+        public Task UpdateToken(IdentityUserToken<string> token);
     }
 }

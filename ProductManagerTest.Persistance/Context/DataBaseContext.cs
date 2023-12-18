@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ProductManagerTest.Persistance.Context
 {
-    public class DataBaseContext : IdentityDbContext<User , Role , Guid>
+    public class DataBaseContext : IdentityDbContext<User , Role , string>
     {
         public DataBaseContext() { }
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
@@ -27,6 +27,11 @@ namespace ProductManagerTest.Persistance.Context
                 .WithMany(u => u.Products)
                 .HasForeignKey(p => p.UserId)
                 .IsRequired();
+            //modelBuilder.Entity<Product>()
+            //    .HasOne(p => p.ProductOwner)
+            //    .WithMany(u => u.Products)
+            //    .HasForeignKey(p => p.UserId)
+            //    .HasPrincipalKey(u => u.Id);
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.Name)

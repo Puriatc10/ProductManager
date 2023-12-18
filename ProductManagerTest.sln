@@ -19,6 +19,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestProject", "TestProject", "{BBDB3BA6-47EA-4A02-8618-25CA7B6ED265}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagerTest.UnitTest", "ProductManagerTest.UnitTest\ProductManagerTest.UnitTest.csproj", "{4397721B-60EA-4846-9BD3-060E43700AE5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E46BBF60-B770-4D8A-B425-09525EC3881C} = {E46BBF60-B770-4D8A-B425-09525EC3881C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagerTest.Domain", "ProductManagerTest.Domain\ProductManagerTest.Domain.csproj", "{815B9F6C-81CA-41AC-8CA8-E04857D9DD2D}"
 EndProject

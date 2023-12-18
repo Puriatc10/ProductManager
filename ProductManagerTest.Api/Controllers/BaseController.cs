@@ -7,7 +7,7 @@ namespace ProductManagerTest.Api.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        protected string AccessToken => Request.Headers.Authorization.ToString().Split(" ")[1];
+        //protected string AccessToken => Request.Headers.Authorization.ToString().Split(" ")[1];
 
         [NonAction]
         public IActionResult ResultOk(object data)

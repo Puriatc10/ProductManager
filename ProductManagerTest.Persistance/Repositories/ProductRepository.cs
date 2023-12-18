@@ -19,41 +19,49 @@ namespace ProductManagerTest.Persistance.Repositories
         }
         public async Task<Guid> Add(Product product)
         {
-            await _context.Products.AddAsync(product);
-            await _context.SaveChangesAsync();
-            return product.Id;
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return Guid.Parse(product.Id);
         }
 
         public async Task<bool> DeleteById(Guid productId)
         {
-            var product = await _context.Products.FindAsync(productId);
+            var product = _context.Products.FirstOrDefault(x => x.Id == productId.ToString());
             _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
             return true;
         }
 
         public async Task<Product> Edit(Product product)
         {
-            _context.Products.Update(product);
-            await _context.SaveChangesAsync();
-            return new Product(product.Id);
+            var existingProduct = _context.Products.Find(product.Id);
+            _context.Entry(existingProduct).CurrentValues.SetValues(product);
+            //_context.Products.Update(product);
+            _context.SaveChanges();
+            return product;
         }
 
         public async Task<List<Product>> GetAllAvailables(Guid? userId = null)
         {
-            var products = _context.Products.Where(x => x.IsAvailable == true && (userId != null ? x.UserId == userId : true)).ToList();
+            var products = _context.Products.Where(x => x.IsAvailable == true && (userId != null ? x.UserId == userId.ToString() : true)).ToList();
             return products;
         }
 
         public async Task<List<Product>> GetAllByUserId(Guid userId)
         {
-            var products = _context.Products.Where(x => x.UserId == userId).ToList();
+            var products = _context.Products.Where(x => x.UserId == userId.ToString()).ToList();
             return products;
+        }
+
+        public async Task<List<Product>?> GetAllExcept(Guid productId)
+        {
+            var res = _context.Products.Where(x => x.Id != productId.ToString()).ToList();
+            return res;
         }
 
         public async Task<Product> GetById(Guid productId)
         {
-            var product = _context.Products.FirstOrDefault(x => x.Id == productId);
+            var product = _context.Products.Include(x => x.ProductOwner).FirstOrDefault(x => x.Id == productId.ToString());
             return product;
         }
 

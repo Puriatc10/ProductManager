@@ -8,7 +8,7 @@ namespace ProductManagerTest.Api.Controllers
 {
     [ApiController]
     [PermissionAuthorize]
-    [Authorize]
+    //[Authorize]
     public class BaseAuthorizeController : ControllerBase
     {
         protected string AccessToken => Request.Headers.Authorization.ToString().Split(" ")[1];
